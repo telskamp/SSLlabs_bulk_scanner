@@ -1,15 +1,5 @@
-<#SSLLabs bulk test tool uses the api og www.ssllabs.com to test ssl functionality and security of public adresses
+<#SSLLabs bulk test tool uses the api of www.ssllabs.com to test ssl functionality and security of public adresses/websites
 Created By TElskamp
- 
---Changelog
--v1.0
-basic functionality fully implemented and tested
-- v1.1
--Added timestamp to filenames to prevent overwriting reports
--Added trim to url input to prevent failure on spaces
--Added creation orf reports folder if does not exist
-- v1.2
-added report mailing
  
 #>
 function Get-TimeStamp {
@@ -23,7 +13,7 @@ $TS = Get-TimeStamp
 $base = "https://api.ssllabs.com/api/v2"
 $scriptdir = $Psscriptroot
 $reportdir = "$scriptdir"+"\reports"
-$InputFile = "$scriptdir"+"\urllist1.csv"
+$InputFile = "$scriptdir"+"\urllist.txt"
 $report = "$reportdir"+"\TempReport"+"$TS"+".csv"
 $fullreport = "$reportdir"+"\Reportfull"+"$TS"+".csv"
 $UrlList = get-content -Path $InputFile
@@ -59,7 +49,7 @@ start-sleep 10
 write-output "Waiting for 1 minute to give sslab the time to fully analyze your sites" 
 write-output "Report written to $report"
 start-sleep 5
-write-output "öpening the temp report to kill the time"
+write-output "Opening the temp report to kill the time"
 start-sleep 5
 import-csv -LiteralPath $report | Out-GridView
 Start-Sleep 55
@@ -83,5 +73,5 @@ foreach ($entry in $resultA) {
 write-output "Full report written to $fullreport"
  
 #############-Mail-###########################
- 
-Send-MailMessage -From sslReport@yourdomain.com -Subject Report -To you@yourdomain.com -Attachments $fullreport, $report -Body "report" -Port 25 -SmtpServer smtp.yourdomain.com -UseSsl
+#uncomment line below and change the email adresses and smtp server details to have the reports sent by mail. 
+#Send-MailMessage -From sslReport@yourdomain.com -Subject Report -To you@yourdomain.com -Attachments $fullreport, $report -Body "report" -Port 25 -SmtpServer smtp.yourdomain.com -UseSsl
