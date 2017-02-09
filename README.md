@@ -9,11 +9,10 @@ Powershell script to scan multiple websites ssl configuration using ssllabs.com 
 # Email report
 Uncomment the last line and change the email details to have te reports sent by mail
 
-#Api documentation
-https://www.ssllabs.com/projects/ssllabs-apis/
 
-
-
+# Compatibillity
+The Script is known to work with powershell version 4 and 5, it will NOT work using powershell 2 or lower!
+update yo sh#t:https://www.microsoft.com/en-us/download/details.aspx?id=50395
 
 # Changelog
 - v1.0
@@ -24,3 +23,6 @@ Basic functionality  implemented and tested
 -Added creation orf reports folder if does not exist
 - v1.2
 -Added report mail line 
+
+# Api documentation
+https://www.ssllabs.com/projects/ssllabs-apis/
