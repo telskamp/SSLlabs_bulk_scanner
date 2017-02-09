@@ -28,6 +28,9 @@ Basic functionality  implemented and tested
 -Added creation orf reports folder if does not exist
 - v1.2
 -Added report mail line 
-
+ 
 # Api documentation
 https://www.ssllabs.com/projects/ssllabs-apis/
+
+Please do not violate the terms and conditions of SSLlabs
+https://www.ssllabs.com/about/terms.html
