@@ -31,10 +31,7 @@ $UrlList = get-content -Path $InputFile
 #create Reportdir if not exists
 if(!(Test-Path -Path $reportdir )){
     New-Item -ItemType directory -Path $reportdir
-}
- 
- 
- 
+} 
  
  
 #Starting first initialization of ssllabs using their api, the timeout is needed to prevent to many requests error (429)
@@ -50,7 +47,7 @@ write-output "waiting for temp report to generate"
 start-sleep 15
 New-Item $report -type file -force
  
-#retrieve ip address and tempreport
+#Retrieve ip address and tempreport
 foreach ($url in $UrlList) {
 $url = $url.Trim()
     Write-Output "retrieve ip address and temp report for $url at SSLlab"
@@ -76,7 +73,7 @@ foreach ($entry in $resultA) {
     $hostip = $($entry.ipAddress)
        Write-Output "fetching results for $hosturl"
  
-    $resultE =  Invoke-RestMethod  -Uri "$base/getEndpointData?host=$hosturl&s=$hostip" | Select-Object –Property ipAddress, serverName, statusMessage, grade -ExpandProperty details
+    $resultE =  Invoke-RestMethod  -Uri "$base/getEndpointData?host=$hosturl&s=$hostip" | Select-Object -Property ipAddress, serverName, statusMessage, grade -ExpandProperty details
     start-sleep 10
     $grade = $resultE |Select-Object -property grade
     Write-Output "$hosturl scored $grade"
